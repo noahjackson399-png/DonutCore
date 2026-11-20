@@ -11,6 +11,8 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
+      - name: Unzip uploaded zip
+        run: for z in *.zip; do if [ -f "$z" ]; then unzip -o "$z"; fi; done
       - name: Build plugin
         run: |
           cd "$(dirname "$(find . -name pom.xml -not -path '*/target/*' | head -1)")"
